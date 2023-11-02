@@ -17,6 +17,14 @@ class AccountDatabase:
         else:
             print("Account", account_number, "already exists")
 
+    def delete_account(self, account_number):
+        index = self.search_account(account_number)
+        if index != -1:
+            print("Deleting account:", self.account_database[index].account_number)
+            del self.account_database[index]
+        else:
+            print(account_number, "invalid account number; nothing to be deleted.")
+
     def search_account(self, account_number):
         for i in range(len(self.account_database)):
             if self.account_database[i].account_number == account_number:
@@ -66,3 +74,7 @@ account_db.deposit('0003', 50)
 account_db.show_account('0003')
 account_db.withdraw('0003', 25)
 account_db.show_account('0003')
+account_db.delete_account('0003')
+account_db.show_account('0003')
+account_db.deposit('0003', 50)
+account_db.withdraw('0001', 6000)
